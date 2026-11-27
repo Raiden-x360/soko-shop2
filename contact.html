@@ -108,7 +108,18 @@
           </div>
         </div>
 
-        <form class="contact-form" id="contact-form">
+        <form
+          class="contact-form"
+          id="contact-form"
+          action="https://formsubmit.co/werefredrick63@gmail.com"
+          method="POST"
+        >
+          <input
+            type="hidden"
+            name="_subject"
+            value="New Soko & Co. contact form message"
+          />
+          <input type="hidden" name="_template" value="table" />
           <div class="contact-form-heading">
             <span class="eyebrow">DROP US A NOTE</span>
             <h2>Send us a message.</h2>
@@ -156,10 +167,17 @@
             ></textarea>
           </div>
           <p class="contact-note">
-            This local demo form is not connected to email or messaging, so
-            submissions won’t be sent.
+            Email submissions are delivered to us through FormSubmit. You can
+            also open WhatsApp with your message prefilled.
           </p>
-          <button class="button button-dark" type="submit">Send message ↗</button>
+          <button class="button button-dark" type="submit">Send by email ↗</button>
+          <button
+            class="button button-dark"
+            id="contact-whatsapp"
+            type="button"
+          >
+            Message us on WhatsApp ↗
+          </button>
           <p class="contact-status" id="contact-status" role="status" aria-live="polite"></p>
         </form>
       </section>
