@@ -285,6 +285,7 @@ a {
   position: relative;
   min-height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   background: #e8c1a8 url("images/hero_bg.jpg") center 43% / cover no-repeat;
 }
 .hero-art::before {

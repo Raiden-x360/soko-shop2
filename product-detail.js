@@ -21,6 +21,68 @@ function escapeHtml(value) {
   });
 }
 
+function setMeta(selector, attribute, content) {
+  const element = document.querySelector(selector);
+  if (element) element.setAttribute(attribute, content);
+}
+
+function absoluteUrl(path) {
+  return new URL(path, window.location.href).href;
+}
+
+function updateProductMetadata() {
+  const description = categoryDescription(product.category);
+  const imageUrl = absoluteUrl(product.art);
+  const pageUrl = window.location.href;
+
+  setMeta('meta[name="description"]', "content", description);
+  setMeta('meta[property="og:url"]', "content", pageUrl);
+  setMeta('meta[property="og:title"]', "content", `${product.name} — Soko & Co.`);
+  setMeta('meta[property="og:description"]', "content", description);
+  setMeta('meta[property="og:image"]', "content", imageUrl);
+  setMeta('meta[name="twitter:title"]', "content", `${product.name} — Soko & Co.`);
+  setMeta('meta[name="twitter:description"]', "content", description);
+  setMeta('meta[name="twitter:image"]', "content", imageUrl);
+
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement("link");
+    canonical.rel = "canonical";
+    document.head.appendChild(canonical);
+  }
+  canonical.href = pageUrl;
+
+  const existingStructuredData = document.getElementById("product-structured-data");
+  if (existingStructuredData) existingStructuredData.remove();
+
+  const structuredData = document.createElement("script");
+  structuredData.type = "application/ld+json";
+  structuredData.id = "product-structured-data";
+  structuredData.textContent = JSON.stringify({
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    name: product.name,
+    description,
+    image: imageUrl,
+    brand: {
+      "@type": "Brand",
+      name: "Soko & Co.",
+    },
+    category: product.category,
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "KES",
+      price: product.price,
+      availability:
+        product.stock > 0
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+      url: pageUrl,
+    },
+  });
+  document.head.appendChild(structuredData);
+}
+
 // Helpers for localized prices and product links used by the detail and related cards.
 function money(amount) {
   return `KES ${amount.toLocaleString("en-KE")}`;
@@ -58,6 +120,7 @@ function categoryDescription(category) {
 // Render the selected product, its image gallery, stock, price, and purchase controls.
 function renderProduct() {
   document.title = `${product.name} — Soko & Co.`;
+  updateProductMetadata();
   const gallery = [product.art, ...(product.gallery || [])];
   const stockMessage =
     product.stock > 0
@@ -67,7 +130,7 @@ function renderProduct() {
     <article class="detail-layout">
       <div class="detail-gallery">
         <div class="detail-visual" style="--product-bg:${product.background}">
-          <img id="detail-main-image" src="${escapeHtml(product.art)}" alt="${escapeHtml(product.name)}">
+          <img id="detail-main-image" src="${escapeHtml(product.art)}" alt="${escapeHtml(product.name)}" loading="lazy">
         </div>
         ${
           gallery.length > 1
@@ -76,7 +139,7 @@ function renderProduct() {
                   .map(
                     (image, index) => `
                       <button class="detail-thumbnail" type="button" data-detail-image="${escapeHtml(image)}" data-detail-alt="${escapeHtml(product.name)}" aria-label="Show product image ${index + 1}" aria-pressed="${index === 0}">
-                        <img src="${escapeHtml(image)}" alt="">
+                        <img src="${escapeHtml(image)}" alt="" loading="lazy">
                       </button>
                     `,
                   )
@@ -120,7 +183,7 @@ function renderRelatedProducts() {
         <article class="product-card">
           <div class="product-visual" style="--product-bg:${item.background}">
             <a class="product-art-link" href="${productUrl(item)}" aria-label="View details for ${escapeHtml(item.name)}">
-              <img class="product-art" src="${escapeHtml(item.art)}" alt="${escapeHtml(item.name)}">
+              <img class="product-art" src="${escapeHtml(item.art)}" alt="${escapeHtml(item.name)}" loading="lazy">
             </a>
             ${item.badge ? `<span class="product-badge">${escapeHtml(item.badge)}</span>` : ""}
             ${window.sokoWishlist.buttonFor(item)}

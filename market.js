@@ -101,7 +101,7 @@ function renderProductCard(product) {
     <article class="product-card">
       <div class="product-visual" style="--product-bg:${product.background}">
         <a class="product-art-link" href="product.html?id=${encodeURIComponent(product.id)}" aria-label="View details for ${product.name}">
-          <img class="product-art" src="${product.art}" alt="${product.name}">
+          <img class="product-art" src="${product.art}" alt="${product.name}" loading="lazy">
         </a>
         ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ""}
         ${window.sokoWishlist.buttonFor(product)}
@@ -266,7 +266,7 @@ function renderCart() {
       if (!product) return "";
       return `
       <li class="cart-line">
-        <img class="cart-line-art" src="${product.art}" alt="${product.name}">
+        <img class="cart-line-art" src="${product.art}" alt="${product.name}" loading="lazy">
         <div class="cart-line-info">
           <strong>${product.name}</strong>
           <span>${money(product.price)}</span>

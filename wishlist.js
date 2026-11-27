@@ -102,7 +102,7 @@
         (product) => `
           <li class="wishlist-line">
             <a class="wishlist-product" href="product.html?id=${encodeURIComponent(product.id)}">
-              <img src="${escapeHtml(product.art)}" alt="">
+              <img src="${escapeHtml(product.art)}" alt="" loading="lazy">
               <span class="wishlist-product-copy">
                 <strong>${escapeHtml(product.name)}</strong>
                 <small>${escapeHtml(product.category)} · KES ${product.price.toLocaleString("en-KE")}</small>
