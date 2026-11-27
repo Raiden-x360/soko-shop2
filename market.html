@@ -1,0 +1,466 @@
+<!doctype html>
+<!-- Main Soko & Co. storefront entry point. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Shop considered everyday finds across style, tech, home, and more at Soko & Co."
+    />
+    <meta name="theme-color" content="#f7f6f2" />
+    <title>Soko &amp; Co. — Good things, found here</title>
+    <link rel="stylesheet" href="market.css" />
+    <script src="market-products.js" defer></script>
+    <script src="wishlist.js" defer></script>
+    <script src="market.js" defer></script>
+    <script src="site-nav.js" defer></script>
+  </head>
+  <body>
+    <!-- Store announcement and shared primary navigation. -->
+    <div class="topline">
+      A little something for every day <span>·</span> Free delivery over KES
+      5,000
+    </div>
+    <header class="site-header">
+      <nav class="nav container" aria-label="Main navigation">
+        <a class="brand" href="#home" aria-label="Soko and Co. home">
+          <span class="brand-mark">s.</span>
+          <span>Soko <span class="brand-light">&amp; Co.</span></span>
+        </a>
+        <div class="nav-links" id="site-menu">
+          <a href="#shop">Shop all</a>
+          <a href="#categories">Categories</a>
+          <a href="#story">Our story</a>
+          <a href="contact.html">Contact</a>
+          <a href="faq.html">FAQs</a>
+        </div>
+        <button
+          class="menu-overlay"
+          type="button"
+          data-menu-overlay
+          aria-label="Close navigation menu"
+          tabindex="-1"
+        ></button>
+        <div class="nav-actions">
+          <button
+            class="search-shortcut"
+            id="search-focus"
+            type="button"
+            aria-label="Search products"
+          >
+            <span aria-hidden="true">⌕</span
+            ><span class="search-word">Search</span>
+          </button>
+          <button
+            class="wishlist-trigger"
+            id="open-wishlist"
+            type="button"
+            aria-label="Open wishlist"
+          >
+            <span aria-hidden="true">♡</span>
+            <span class="wishlist-count" id="wishlist-count">0</span>
+          </button>
+          <button
+            class="cart-trigger"
+            id="open-cart"
+            type="button"
+            aria-label="Open shopping bag"
+          >
+            <span class="bag-icon" aria-hidden="true">🛍️</span>
+            <span class="cart-word">Bag</span>
+            <span class="cart-count" id="cart-count">0</span>
+          </button>
+          <button
+            class="mobile-menu-toggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-controls="site-menu"
+            aria-expanded="false"
+          >
+            <span class="menu-icon" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="home">
+      <!-- Hero message and featured campaign artwork. -->
+      <section class="hero container">
+        <div class="hero-copy">
+          <span class="eyebrow"
+            ><span class="eyebrow-star">✳</span> THE EVERYDAY EDIT</span
+          >
+          <h1>Good things,<br />found <em>here.</em></h1>
+          <p>
+            Little upgrades. Thoughtful gifts. Everyday favourites. Find the
+            things that make your day feel a little more yours.
+          </p>
+          <a class="button button-dark" href="#shop"
+            >Find your something <span aria-hidden="true">↗</span></a
+          >
+          <div class="hero-footnote">
+            <span class="tiny-sun">✳</span> Curated with care, delivered with a
+            smile.
+          </div>
+        </div>
+        <div
+          class="hero-art"
+          aria-label="A shopper carrying colorful shopping bags"
+        >
+          <div class="hero-art-top">
+            <span>THE GOOD STUFF</span><span>VOL. 01 — NAIROBI</span>
+          </div>
+          <div class="hero-sticker sticker-sun" aria-hidden="true">✳</div>
+          <div class="hero-art-caption">
+            <span>Made for real life</span><span>01 / 04</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Category shortcuts select a category in the catalog below. -->
+      <section
+        class="category-section container"
+        id="categories"
+        aria-label="Shop by category"
+      >
+        <a class="category-link" href="#shop" data-category-link="Style"
+          ><span class="category-emoji style-emoji">✦</span><span>Style</span
+          ><span class="category-arrow">↗</span></a
+        >
+        <a class="category-link" href="#shop" data-category-link="Tech"
+          ><span class="category-emoji tech-emoji">⌘</span><span>Tech</span
+          ><span class="category-arrow">↗</span></a
+        >
+        <a class="category-link" href="#shop" data-category-link="Home"
+          ><span class="category-emoji home-emoji">⌂</span><span>Home</span
+          ><span class="category-arrow">↗</span></a
+        >
+        <a class="category-link" href="#shop" data-category-link="Self-care"
+          ><span class="category-emoji care-emoji">✿</span><span>Self-care</span
+          ><span class="category-arrow">↗</span></a
+        >
+        <a class="category-link" href="#shop" data-category-link="All"
+          ><span class="category-emoji gifts-emoji">🎁</span
+          ><span>Little gifts</span><span class="category-arrow">↗</span></a
+        >
+      </section>
+
+      <!-- Search, filters, sorting, and product groups are populated by market.js. -->
+      <section class="shop-section container" id="shop">
+        <div class="shop-heading">
+          <div>
+            <span class="eyebrow">A FEW FAVOURITES</span>
+            <h2>Find your new <em>favourite.</em></h2>
+          </div>
+          <p>Useful, lovely, and just a little unexpected.</p>
+        </div>
+        <div class="shop-controls">
+          <div
+            class="filter-list"
+            id="category-filters"
+            aria-label="Filter products by category"
+          >
+            <button
+              class="filter-chip is-active"
+              type="button"
+              data-category="All"
+              aria-pressed="true"
+            >
+              Everything
+            </button>
+            <button
+              class="filter-chip"
+              type="button"
+              data-category="Style"
+              aria-pressed="false"
+            >
+              Style
+            </button>
+            <button
+              class="filter-chip"
+              type="button"
+              data-category="Tech"
+              aria-pressed="false"
+            >
+              Tech
+            </button>
+            <button
+              class="filter-chip"
+              type="button"
+              data-category="Home"
+              aria-pressed="false"
+            >
+              Home
+            </button>
+            <button
+              class="filter-chip"
+              type="button"
+              data-category="Self-care"
+              aria-pressed="false"
+            >
+              Self-care
+            </button>
+          </div>
+          <div class="shop-tools">
+            <label class="search-field">
+              <span class="visually-hidden">Search products</span>
+              <span aria-hidden="true">⌕</span>
+              <input
+                id="product-search"
+                type="search"
+                placeholder="Find something..."
+                autocomplete="off"
+              />
+            </label>
+            <label class="sort-field">
+              <span class="visually-hidden">Sort products</span>
+              <select id="sort-products">
+                <option value="featured">Featured</option>
+                <option value="price-low">Price: low to high</option>
+                <option value="price-high">Price: high to low</option>
+                <option value="name">Name: A to Z</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <p class="results-count" id="results-count" aria-live="polite"></p>
+        <div class="product-grid product-groups" id="product-grid"></div>
+        <p class="empty-state" id="empty-state" hidden>
+          No little finds here yet. Try another search or category.
+        </p>
+      </section>
+
+      <!-- Short brand story and route back to the catalog. -->
+      <section class="story-section" id="story">
+        <div class="container story-inner">
+          <span class="story-spark" aria-hidden="true">✳</span>
+          <div>
+            <span class="eyebrow">A NOTE FROM US</span>
+            <h2>Everyday things.<br /><em>A little more special.</em></h2>
+          </div>
+          <div class="story-copy">
+            <p>
+              Soko means market. We think the best markets are the ones where
+              you stumble across something you didn't know you needed—and leave
+              a little happier.
+            </p>
+            <p>
+              That's the feeling we're after. A considered mix of useful, joyful
+              things, picked for everyday life.
+            </p>
+            <a class="text-link" href="#shop"
+              >Have a look around <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Shared brand details and links to customer help pages. -->
+    <footer class="site-footer">
+      <div class="container footer-main">
+        <div class="footer-brand">
+          <a class="brand" href="#home"
+            ><span class="brand-mark">s.</span
+            ><span>Soko <span class="brand-light">&amp; Co.</span></span></a
+          >
+          <p>Good things for the everyday.</p>
+        </div>
+        <div class="footer-note">
+          <span>Made with care</span><span>·</span><span>Nairobi, Kenya</span>
+        </div>
+        <a class="back-top" href="contact.html">Contact us ↗</a>
+        <a class="back-top" href="faq.html">FAQs</a>
+        <a class="back-top" href="#home">Back to the top ↑</a>
+      </div>
+      <div class="container footer-bottom">
+        <span>© 2026 Soko &amp; Co.</span
+        ><span>Local demo store · Checkout does not process payments</span>
+      </div>
+    </footer>
+
+    <!-- Saved-item drawer and accessible wishlist status announcements. -->
+    <dialog
+      class="wishlist-dialog"
+      id="wishlist-dialog"
+      aria-labelledby="wishlist-title"
+    >
+      <div class="wishlist-drawer">
+        <div class="drawer-header">
+          <div>
+            <span class="eyebrow">YOUR SAVED FINDS</span>
+            <h2 id="wishlist-title">
+              Wishlist <span id="wishlist-dialog-count">(0)</span>
+            </h2>
+          </div>
+          <button
+            class="close-button"
+            id="close-wishlist"
+            type="button"
+            aria-label="Close wishlist"
+          >
+            ×
+          </button>
+        </div>
+        <p class="wishlist-intro">Saved in this browser for later.</p>
+        <p class="wishlist-empty" id="wishlist-empty">
+          Your wishlist is empty. Tap a heart on anything you like.
+        </p>
+        <ul class="wishlist-items" id="wishlist-items" hidden></ul>
+      </div>
+    </dialog>
+    <p
+      class="visually-hidden"
+      id="wishlist-status"
+      role="status"
+      aria-live="polite"
+    ></p>
+
+    <!-- Cart drawer, local demo checkout, and order confirmation dialogs. -->
+    <dialog class="cart-dialog" id="cart-dialog" aria-labelledby="cart-title">
+      <div class="cart-drawer">
+        <div class="drawer-header">
+          <div>
+            <span class="eyebrow">YOUR GOOD FINDS</span>
+            <h2 id="cart-title">Your bag <span id="drawer-count">(0)</span></h2>
+          </div>
+          <button
+            class="close-button"
+            id="close-cart"
+            type="button"
+            aria-label="Close bag"
+          >
+            ×
+          </button>
+        </div>
+        <div class="shipping-progress" id="shipping-progress"></div>
+        <ul class="cart-items" id="cart-items"></ul>
+        <div class="cart-empty" id="cart-empty">
+          <span aria-hidden="true">🛍️</span>
+          <p>Your bag is taking a little break.</p>
+          <button class="text-link" id="continue-shopping" type="button">
+            Find something lovely ↗
+          </button>
+        </div>
+        <div class="drawer-footer" id="drawer-footer">
+          <div class="subtotal-row">
+            <span>Subtotal</span><strong id="cart-subtotal">KES 0</strong>
+          </div>
+          <p class="delivery-note" id="delivery-note">
+            Delivery is calculated at checkout.
+          </p>
+          <button
+            class="button button-dark checkout-trigger"
+            id="checkout-trigger"
+            type="button"
+          >
+            Continue to checkout <span aria-hidden="true">→</span>
+          </button>
+          <p class="demo-note">
+            Secure demo checkout · No payment is collected
+          </p>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog
+      class="checkout-dialog"
+      id="checkout-dialog"
+      aria-labelledby="checkout-title"
+    >
+      <div class="checkout-shell">
+        <div class="checkout-header">
+          <div>
+            <span class="eyebrow">JUST A FEW DETAILS</span>
+            <h2 id="checkout-title">Almost <em>yours.</em></h2>
+          </div>
+          <button
+            class="close-button"
+            id="close-checkout"
+            type="button"
+            aria-label="Close checkout"
+          >
+            ×
+          </button>
+        </div>
+        <p class="checkout-disclaimer">
+          Demo checkout only—no payment will be taken and no order is sent to a
+          store.
+        </p>
+        <form id="checkout-form">
+          <div class="form-grid">
+            <label class="form-field"
+              ><span>First name</span
+              ><input name="firstName" autocomplete="given-name" required
+            /></label>
+            <label class="form-field"
+              ><span>Last name</span
+              ><input name="lastName" autocomplete="family-name" required
+            /></label>
+            <label class="form-field field-full"
+              ><span>Email address</span
+              ><input name="email" type="email" autocomplete="email" required
+            /></label>
+            <label class="form-field field-full"
+              ><span>Phone number</span
+              ><input name="phone" type="tel" autocomplete="tel" required
+            /></label>
+            <label class="form-field field-full"
+              ><span>Delivery address</span
+              ><input name="address" autocomplete="street-address" required
+            /></label>
+            <label class="form-field"
+              ><span>Town / city</span
+              ><input name="city" autocomplete="address-level2" required
+            /></label>
+            <label class="form-field"
+              ><span>Payment preference</span
+              ><select name="payment" required>
+                <option value="Cash on delivery">Cash on delivery</option>
+                <option value="M-Pesa on delivery">M-Pesa on delivery</option>
+              </select></label
+            >
+          </div>
+          <div class="checkout-summary">
+            <div>
+              <span>Items</span><strong id="checkout-items">KES 0</strong>
+            </div>
+            <div>
+              <span>Delivery</span><strong id="checkout-delivery">KES 0</strong>
+            </div>
+            <div class="checkout-total">
+              <span>Total</span><strong id="checkout-total">KES 0</strong>
+            </div>
+          </div>
+          <button class="button button-dark place-order" type="submit">
+            Place demo order <span aria-hidden="true">→</span>
+          </button>
+        </form>
+      </div>
+    </dialog>
+
+    <dialog
+      class="confirmation-dialog"
+      id="confirmation-dialog"
+      aria-labelledby="confirmation-title"
+    >
+      <div class="confirmation-content">
+        <span class="confirmation-icon" aria-hidden="true">✓</span>
+        <span class="eyebrow">DEMO ORDER COMPLETE</span>
+        <h2 id="confirmation-title">Lovely choice.</h2>
+        <p id="confirmation-message"></p>
+        <p class="checkout-disclaimer">
+          This is a local demo only. No payment was taken and the order was not
+          transmitted.
+        </p>
+        <button class="button button-dark" id="finish-order" type="button">
+          Back to the good stuff <span aria-hidden="true">↗</span>
+        </button>
+      </div>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
